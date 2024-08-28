@@ -7,13 +7,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private AdapterProduct adapterProduct;
     private List<Product> productList = new ArrayList<>();
+    private RecyclerView rvProduct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,19 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        rvProduct = findViewById(R.id.rvProdutos);
+
+        loadList();
+
+        configRecyclerView();
+    }
+
+    private void configRecyclerView() {
+        rvProduct.setLayoutManager(new LinearLayoutManager(this));
+        rvProduct.setHasFixedSize(true);
+        adapterProduct = new AdapterProduct(productList);
+        rvProduct.setAdapter(adapterProduct);
     }
 
     private void loadList() {
@@ -59,12 +76,36 @@ public class MainActivity extends AppCompatActivity {
         product6.setEstoque(44);
         product6.setValor(599.99);
 
+        Product product7 = new Product();
+        product7.setNome("Teclado Logitech");
+        product7.setEstoque(10);
+        product7.setValor(195.99);
+
+        Product product8 = new Product();
+        product8.setNome("HD SSD Kingston 480GB");
+        product8.setEstoque(19);
+        product8.setValor(230.57);
+
+        Product product9 = new Product();
+        product9.setNome("Processador AMD Ryzen 3.6GHz");
+        product9.setEstoque(10);
+        product9.setValor(640.71);
+
+        Product product10 = new Product();
+        product10.setNome("Memória HyperX Fury 8GB");
+        product10.setEstoque(20);
+        product10.setValor(318.99);
+
         productList.add(product1);
         productList.add(product2);
         productList.add(product3);
         productList.add(product4);
         productList.add(product5);
         productList.add(product6);
+        productList.add(product7);
+        productList.add(product8);
+        productList.add(product9);
+        productList.add(product10);
 
 
 
